@@ -5,6 +5,7 @@ import {
   selectAllSales,
   selectIds,
   deleteSalesExec,
+  updateSalesExecData,
 } from "../../../Slices/SalesSlice";
 
 const SalesExecutive = () => {
@@ -16,6 +17,7 @@ const SalesExecutive = () => {
   const [dob, setDob] = useState("");
   const [gender, setGender] = useState("");
   const [experience, setExperience] = useState("");
+  const [isEdit, setIsEdit] = useState(false);
 
   const salesExecSchema = {
     id: selectIdsValue,
@@ -27,30 +29,76 @@ const SalesExecutive = () => {
   };
 
   const addNewSalesExec = () => {
-    dispatch(addSalesExec(salesExecSchema));
+    if (firstName !== "" && gender !== "") {
+      dispatch(addSalesExec(salesExecSchema));
+    } else {
+      throw alert("Name and Gender is required");
+    }
+    setFirstName("");
+    setLastName("");
+    setDob("");
+    setGender("");
+    setExperience("");
   };
 
   const deleteSalesExecFn = (e) => {
     dispatch(deleteSalesExec(e));
   };
 
+  const [currentItem, setCurrentItem] = useState(0);
+
+  const updateSalesExec = (e) => {
+    setIsEdit(false);
+    setCurrentItem(e);
+    const currentData = allSalesExecs.find((value, id) => id === e);
+    setFirstName(currentData && currentData.firstName);
+    setLastName(currentData && currentData.lastName);
+    setDob(currentData && currentData.dob);
+    setGender(currentData && currentData.gender);
+    setExperience(currentData && currentData.experience);
+  };
+
+  const changeData = () => {
+    dispatch(
+      updateSalesExecData({
+        id: currentItem,
+        data: salesExecSchema,
+      })
+    );
+    setFirstName("");
+    setLastName("");
+    setDob("");
+    setGender("");
+    setExperience("");
+    setIsEdit(false);
+  };
+
+  const handleEmptyInputs = () => {
+    setFirstName("");
+    setLastName("");
+    setDob("");
+    setGender("");
+    setExperience("");
+  };
+
   return (
     <div>
       <h1 className="text-center text-warning my-2 pb-2">SALES EXECUTIVE</h1>
-      <div classNameName="my-3">
+      <div className="my-3">
         <button
           className="btn btn-warning d-flex align-items-center gap-2 shadow-none"
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
           type="button"
+          onClick={handleEmptyInputs}
         >
-          <i classNameName="fa fa-plus-circle"></i>ADD SALES EXECUTIVE
+          <i className="fa fa-plus-circle"></i>ADD SALES EXECUTIVE
         </button>
       </div>
       <div
         className="modal fade"
         id="exampleModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
@@ -114,12 +162,24 @@ const SalesExecutive = () => {
             </div>
             <div className="modal-footer d-flex justify-content-center">
               <button
-                className="btn btn-warning shadow-none"
+                className={`btn btn-warning shadow-none ${
+                  isEdit ? "d-flex" : "d-none"
+                }`}
                 data-bs-dismiss="modal"
                 type="button"
                 onClick={addNewSalesExec}
               >
                 ADD TO THE TEAM
+              </button>
+              <button
+                className={`btn btn-warning shadow-none ${
+                  isEdit ? "d-none" : "d-flex"
+                }`}
+                data-bs-dismiss="modal"
+                type="button"
+                onClick={changeData}
+              >
+                Update data
               </button>
             </div>
           </div>
@@ -138,8 +198,8 @@ const SalesExecutive = () => {
           </tr>
         </thead>
         {allSalesExecs &&
-          allSalesExecs.map((players) => (
-            <tbody>
+          allSalesExecs.map((players, idx) => (
+            <tbody key={players.id}>
               <tr>
                 <td>{players.firstName}</td>
                 <td>{players.lastName}</td>
@@ -147,13 +207,18 @@ const SalesExecutive = () => {
                 <td>{players.gender}</td>
                 <td>{players.experience}</td>
                 <td>
-                  <button className="btn btn-hover rounded-circle shadow-none">
+                  <button
+                    className={`btn btn-hover rounded-circle shadow-none `}
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    onClick={() => updateSalesExec(idx)}
+                  >
                     <i className="fa fa-pen"></i>
                   </button>
                 </td>
                 <td>
                   <button
-                    className="btn btn-hover rounded-circle shadow-none"
+                    className={`btn btn-hover rounded-circle shadow-none `}
                     onClick={() => deleteSalesExecFn(players.id)}
                   >
                     <i className="fa fa-trash"></i>

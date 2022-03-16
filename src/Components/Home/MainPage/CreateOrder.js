@@ -1,6 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { selectAllInventories } from "../../../Slices/InventorySlice";
+import {
+  selectAllMedicinesValue,
+  addMedicines,
+} from "../../../Slices/OrderSlice";
 
 const CreateOrder = () => {
+  const [customerName, setCustomerName] = useState("");
+  const [customerNumber, setCustomerNumber] = useState(+91);
+  const [medicine, setMedicine] = useState("");
+  const [medicineQty, setMedicineQty] = useState(0);
+
+  const dispatch = useDispatch();
+
+  const selectAllInventoriesData = useSelector(selectAllInventories);
+  const selectAllMedicines = useSelector(selectAllMedicinesValue);
+
+  const filteredMedicines =
+    selectAllInventoriesData &&
+    selectAllInventoriesData.filter((value) => value.medicineName === medicine);
+
+  const createMedicineSchema = {
+    medicine,
+    medicineQty,
+    price: filteredMedicines.length > 0 && filteredMedicines[0].price,
+  };
+
+  console.log(filteredMedicines.length > 0 && filteredMedicines[0].price);
+  console.log(selectAllMedicines);
+  console.log(createMedicineSchema);
+
+  const handleAddMedicines = () => {
+    dispatch(addMedicines(createMedicineSchema));
+  };
+
   return (
     <div className="container mx-auto">
       <h1 className="text-center text-warning my-2 pb-2">Create Order</h1>
@@ -9,9 +43,11 @@ const CreateOrder = () => {
         <div>
           <h5>Name</h5>
           <input
-            type="search"
+            type="text"
             placeholder="Customer Name"
             className="border p-1 rounded activeInputs"
+            value={customerName}
+            onChange={(e) => setCustomerName(e.target.value)}
           />
         </div>
         <div>
@@ -20,6 +56,8 @@ const CreateOrder = () => {
             type="Number"
             placeholder="Customer Number"
             className="border p-1 rounded activeInputs"
+            value={customerNumber}
+            onChange={(e) => setCustomerNumber(e.target.value)}
           />
         </div>
       </div>
@@ -30,9 +68,19 @@ const CreateOrder = () => {
             type="text"
             placeholder="Medicine Name"
             className="border p-1 activeInputs"
+            value={medicine}
+            onChange={(e) => setMedicine(e.target.value)}
           />
-          <input type="Number" value="0" className="border p-1 activeInputs" />
-          <button className="btn btn-warning rounded-circle">
+          <input
+            type="Number"
+            value={medicineQty}
+            onChange={(e) => setMedicineQty(e.target.value)}
+            className="border p-1 activeInputs"
+          />
+          <button
+            className="btn btn-warning rounded-circle"
+            onClick={handleAddMedicines}
+          >
             <i className="fa fa-plus"></i>
           </button>
         </div>
@@ -45,13 +93,22 @@ const CreateOrder = () => {
             <th>Price (per Unit)</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>dolo</td>
-            <td>5</td>
-            <td>₹500</td>
-          </tr>
-        </tbody>
+        {selectAllMedicines &&
+          selectAllMedicines.map((meds) => (
+            <tbody>
+              <tr>
+                <td>{meds.medicine}</td>
+                <td>{meds.medicineQty}</td>
+                <td>
+                  {meds.price.length > 0 ? (
+                    meds.price
+                  ) : (
+                    <span className="text-danger">No Stock</span>
+                  )}
+                </td>
+              </tr>
+            </tbody>
+          ))}
         <tr>
           <td> </td>
           <th>Total</th>

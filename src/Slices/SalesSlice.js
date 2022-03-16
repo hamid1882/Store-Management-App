@@ -21,10 +21,15 @@ const SalesSlice = createSlice({
       );
       state.allSalesExecs = filteredSalesExec;
     },
+    updateSalesExecData: (state, action) => {
+      // const filteredData = state.allSalesExecs.filter(value => value.id )
+      state.allSalesExecs[action.payload.id] = action.payload.data;
+    },
   },
 });
 
-export const { addSalesExec, deleteSalesExec } = SalesSlice.actions;
+export const { addSalesExec, deleteSalesExec, updateSalesExecData } =
+  SalesSlice.actions;
 
 // Selectors
 

@@ -5,8 +5,6 @@ import {
   selectAllInventories,
   deleteItem,
   selectId,
-  editItem,
-  selectItem,
   updateItem,
 } from "../../../Slices/InventorySlice";
 import "./MainPage.css";
@@ -14,7 +12,6 @@ import "./MainPage.css";
 const Inventory = () => {
   const allInventories = useSelector(selectAllInventories);
   const allIds = useSelector(selectId);
-  const selectedItem = useSelector(selectItem);
 
   const [medicineName, setMedicineName] = useState("");
   const [manufacturer, setManufacturer] = useState("");
@@ -52,23 +49,25 @@ const Inventory = () => {
     dispatch(deleteItem(e));
   };
 
+  const [currentMedicine, setCurrentMedicine] = useState(0);
+
   const currentItem = (e) => {
-    dispatch(editItem(e));
+    setCurrentMedicine(e);
     setIsAddNew(false);
-    setMedicineName(selectedItem && selectedItem[0].medicineName);
-    setManufacturer(selectedItem && selectedItem[0].manufacturer);
-    setPrice(selectedItem && selectedItem[0].price);
-    setStock(selectedItem && selectedItem[0].stock);
-    setDiscount(selectedItem && selectedItem[0].discount);
+    const currentData = allInventories.find((value, id) => id === e);
+    setMedicineName(currentData.medicineName);
+    setManufacturer(currentData.manufacturer);
+    setPrice(currentData.price);
+    setStock(currentData.stock);
+    setDiscount(currentData.discount);
   };
 
   const handleUpdateItem = () => {
-    setIsAddNew(true);
     dispatch(
       updateItem({
-        id: selectedItem[0].id - 1,
-        updatedFile: {
-          id: selectedItem[0].id - 1,
+        id: currentMedicine,
+        data: {
+          id: currentMedicine,
           medicineName,
           manufacturer,
           price,
@@ -77,6 +76,9 @@ const Inventory = () => {
         },
       })
     );
+  };
+
+  const emptyTheInput = () => {
     setMedicineName("");
     setManufacturer("");
     setPrice(0);
@@ -87,12 +89,12 @@ const Inventory = () => {
   return (
     <div>
       <h1 className="text-center text-warning my-2">Inventory</h1>
-      <div classNameName="my-3">
+      <div className="my-3">
         <button
           className="btn btn-warning d-flex align-items-center gap-2 shadow-none"
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
-          onClick={() => setIsAddNew(true)}
+          onClick={emptyTheInput}
           type="button"
         >
           <i className="fa fa-plus"></i>ADD NEW MEDICINE
@@ -103,7 +105,7 @@ const Inventory = () => {
         aria-hidden="true"
         className="modal fade"
         id="exampleModal"
-        tabindex="-1"
+        tabIndex="-1"
       >
         <div className="modal-dialog">
           <div className="modal-content">
@@ -198,7 +200,7 @@ const Inventory = () => {
           </tr>
         </thead>
         {allInventories &&
-          allInventories.map((items) => (
+          allInventories.map((items, idx) => (
             <tbody key={items.id}>
               <tr>
                 <td>{items.medicineName}</td>
@@ -209,7 +211,7 @@ const Inventory = () => {
                 <td>
                   <button
                     className="btn btn-hover rounded-circle shadow-none"
-                    onClick={() => currentItem(items.id)}
+                    onClick={() => currentItem(idx)}
                     data-bs-toggle="modal"
                     data-bs-target="#exampleModal"
                   >

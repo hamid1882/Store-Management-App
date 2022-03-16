@@ -4,7 +4,6 @@ let id = 1;
 
 export const initialState = {
   allInventories: [],
-  editItemData: {},
   id,
 };
 
@@ -22,27 +21,20 @@ const InventorySlice = createSlice({
       );
       state.allInventories = filteredInventories;
     },
-    editItem: (state, action) => {
-      state.editItemData = state.allInventories.filter(
-        (value) => value.id === action.payload
-      );
-    },
     updateItem: (state, action) => {
-      state.allInventories[action.payload.id] = action.payload.updatedFile;
+      state.allInventories[action.payload.id] = action.payload.data;
       // eslint-disable-next-line
       state.allInventories = state.allInventories;
     },
   },
 });
 
-export const { addNewItem, deleteItem, editItem, updateItem } =
-  InventorySlice.actions;
+export const { addNewItem, deleteItem, updateItem } = InventorySlice.actions;
 
 // Selectors
 
 export const selectAllInventories = (state) =>
   state.InventorySlice.allInventories;
 export const selectId = (state) => state.InventorySlice.id;
-export const selectItem = (state) => state.InventorySlice.editItemData;
 
 export default InventorySlice.reducer;

@@ -8,7 +8,7 @@ import SalesExecHome from "./Components/Home/SalesExecHome";
 function App() {
   const saveAdmin = localStorage.getItem("isAdminSaved");
 
-  const [isAdmin, setIsAdmin] = useState(saveAdmin);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [isSalesExec, setIsSalesExec] = useState(false);
 
   localStorage.setItem("isAdminSaved", isAdmin);
