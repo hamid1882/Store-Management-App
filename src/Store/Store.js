@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import itemsSlice from "../Feautures/ItemsSlice";
+import InventorySlice from "../Slices/InventorySlice";
+import SalesSlice from "../Slices/SalesSlice";
 
 const store = configureStore({
   reducer: {
-    itemsSlice,
+    InventorySlice,
+    SalesSlice,
   },
 });
 

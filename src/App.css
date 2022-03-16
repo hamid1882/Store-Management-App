@@ -1,0 +1,8 @@
+body {
+  background-color: rgb(240, 243, 245);
+}
+
+.activeInputs:focus {
+  outline: none;
+  border: none;
+}

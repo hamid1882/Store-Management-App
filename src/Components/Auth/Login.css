@@ -1,4 +1,4 @@
-inputActive:active {
+inputActive:focus {
   outline: none;
   border: none;
 }
