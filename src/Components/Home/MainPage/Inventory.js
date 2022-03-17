@@ -104,7 +104,7 @@ const Inventory = () => {
       <div
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
-        className="modal fade bg-dark"
+        className="modal fade"
         id="exampleModal"
         tabIndex="-1"
       >
@@ -176,7 +176,7 @@ const Inventory = () => {
                 <button
                   className={`${
                     isAddNew ? "d-none" : "d-flex"
-                  } btn btn-warning shadow-none`}
+                  } btn btn-dark text-warning shadow-none`}
                   data-bs-dismiss="modal"
                   onClick={handleUpdateItem}
                   type="button"
@@ -211,7 +211,7 @@ const Inventory = () => {
                 <td>{items.discount}%</td>
                 <td>
                   <button
-                    className="btn btn-hover rounded-circle shadow-none"
+                    className="btn text-lightOrange btn-hover rounded-circle shadow-none"
                     onClick={() => currentItem(idx)}
                     data-bs-toggle="modal"
                     data-bs-target="#exampleModal"
@@ -222,7 +222,7 @@ const Inventory = () => {
                 <td key={items.id}>
                   <div>
                     <button
-                      className="btn btn-hover rounded-circle shadow-none"
+                      className="btn text-lightOrange btn-hover rounded-circle shadow-none"
                       id={items.id}
                       onClick={() => deleteCurrentItem(items.id)}
                       title={items.name}

@@ -6,3 +6,19 @@ body {
   outline: none;
   border: none;
 }
+
+.bg-lightOrange {
+  background-color: rgb(121, 94, 22);
+}
+
+.bg-darkOrange {
+  background-color: rgb(41, 34, 15);
+}
+
+.text-lightOrange {
+  color: rgb(233, 206, 157);
+}
+
+.font-stylish {
+  font-family: "Pacifico", cursive;
+}

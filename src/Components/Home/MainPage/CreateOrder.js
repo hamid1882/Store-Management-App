@@ -14,7 +14,7 @@ import {
 
 const CreateOrder = () => {
   const [customerName, setCustomerName] = useState("");
-  const [customerNumber, setCustomerNumber] = useState(+91);
+  const [customerNumber, setCustomerNumber] = useState(91);
   const [medicine, setMedicine] = useState("");
   const [medicineQty, setMedicineQty] = useState("");
 
@@ -42,6 +42,8 @@ const CreateOrder = () => {
     medicineData: selectAllMedicines,
     total: selectAllMedicines.map((val) => val.price),
   };
+
+  console.log(allOrdersSchema);
 
   const sumUpTotal = (price, qty) => {
     let addUp = [];
@@ -99,7 +101,7 @@ const CreateOrder = () => {
   const handleCreateOrder = () => {
     dispatch(addOrders(allOrdersSchema));
 
-    setCustomerName("");
+    setCustomerName();
     setCustomerNumber(91);
     dispatch(emptyMedicine());
   };
@@ -131,7 +133,7 @@ const CreateOrder = () => {
         </div>
       </div>
       <div>
-        <h5>Select Medicine</h5>
+        <h5 className="text-warning">Select Medicine</h5>
         <div className="d-flex gap-2">
           <input
             type="text"
@@ -148,7 +150,7 @@ const CreateOrder = () => {
             className="border-0 bg-warning p-1 activeInputs"
           />
           <button
-            className="btn btn-warning rounded-circle"
+            className="btn btn-warning rounded-circle shadow-none"
             onClick={handleAddMedicines}
           >
             <i className="fa fa-plus"></i>

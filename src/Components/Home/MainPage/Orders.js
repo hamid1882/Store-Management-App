@@ -29,7 +29,10 @@ const Orders = () => {
       <h1 className="text-center text-warning my-2 pb-2">Orders History</h1>
       {selectAllOrdersVal.length > 0 &&
         selectAllOrdersVal.map((val, idx) => (
-          <div key={idx} className="mx-5 my-4 bg-light p-5 rounded ">
+          <div
+            key={idx}
+            className="mx-5 my-4 bg-lightOrange text-warning p-5 rounded "
+          >
             <div className="d-flex gap-3 justify-content-between align-items-center my-4 ">
               <h5>
                 Customer Name:{" "}
@@ -43,7 +46,7 @@ const Orders = () => {
                 OrderId: <span className="text-danger">{val.orderId}</span>
               </h5>
               <button
-                className="btn btn-hover rounded-circle"
+                className="btn btn-hover rounded-circle shadow-none"
                 onClick={() => deleteSelectedOrder(val.id)}
               >
                 <i className="fa fa-trash text-danger"></i>

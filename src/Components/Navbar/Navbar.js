@@ -1,14 +1,21 @@
 import React from "react";
 
-const Navbar = ({ isAdmin, isSalesExec, setIsAdmin, setIsSalesExec }) => {
+const Navbar = ({
+  setCheckAdmin,
+  isAdmin,
+  isSalesExec,
+  setIsAdmin,
+  setIsSalesExec,
+}) => {
   const handleLogout = () => {
+    setCheckAdmin("");
     setIsAdmin(false);
     setIsSalesExec(false);
     localStorage.removeItem("userName");
     localStorage.removeItem("password");
   };
   return (
-    <nav className="navbar navbar-light bg-dark text-light">
+    <nav className="navbar navbar-light bg-darkOrange text-light shadow">
       <div className="container-fluid">
         <h2 className="navbar-brand t">
           <i className="fa fa-plus-circle text-warning fs-1 shadow rounded-circle"></i>

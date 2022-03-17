@@ -4,7 +4,7 @@ const Sidebar = ({ selectedTab, isSelectedTag, isSalesExec }) => {
   };
 
   return (
-    <div className="w-25 vh-100 shadow border-end border-warning mx-2 p-2 bg-dark text-light">
+    <div className="w-25 vh-100 shadow  mx-2 p-2 bg-darkOrange text-light">
       <div className="w-100">
         <button
           className={`btn text-light  my-2 w-100 shadow-none shadow d-flex align-items-center gap-3 ${
