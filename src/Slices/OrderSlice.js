@@ -1,7 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+let currentId = 1;
+
 export const initialState = {
   allMedicines: [],
+  allOrders: [],
+  currentId,
 };
 
 const OrderSlice = createSlice({
@@ -11,13 +15,29 @@ const OrderSlice = createSlice({
     addMedicines: (state, action) => {
       state.allMedicines.push(action.payload);
     },
+    addOrders: (state, action) => {
+      state.allOrders.push(action.payload);
+      state.currentId = state.currentId + 1;
+    },
+    emptyMedicine: (state, action) => {
+      state.allMedicines = [];
+    },
+    deleteOrder: (state, action) => {
+      const filteredOrders = state.allOrders.filter(
+        (val) => val.id !== action.payload
+      );
+      state.allOrders = filteredOrders;
+    },
   },
 });
 
-export const { addMedicines } = OrderSlice.actions;
+export const { addMedicines, addOrders, emptyMedicine, deleteOrder } =
+  OrderSlice.actions;
 
 // Selectors
 
 export const selectAllMedicinesValue = (state) => state.OrderSlice.allMedicines;
+export const selectAllOrders = (state) => state.OrderSlice.allOrders;
+export const selectOrderId = (state) => state.OrderSlice.currentId;
 
 export default OrderSlice.reducer;

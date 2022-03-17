@@ -26,10 +26,19 @@ const InventorySlice = createSlice({
       // eslint-disable-next-line
       state.allInventories = state.allInventories;
     },
+    updateStock: (state, action) => {
+      const findId = state.allInventories.find(
+        (val) => val.id === action.payload.id
+      );
+      findId.stock = findId.stock - action.payload.sold;
+      // eslint-disable-next-line
+      state.allInventories = state.allInventories;
+    },
   },
 });
 
-export const { addNewItem, deleteItem, updateItem } = InventorySlice.actions;
+export const { addNewItem, deleteItem, updateItem, updateStock } =
+  InventorySlice.actions;
 
 // Selectors
 

@@ -13,7 +13,7 @@ function SalesExecHome({ isSalesExec }) {
         isSelectedTag={isSelectedTag}
         isSalesExec={isSalesExec}
       />
-      <div className="border border-light w-75 mx-auto p-2 rounded ">
+      <div className="w-75 mx-auto p-2 rounded ">
         {selectedTab === "Create Order" && <CreateOrder />}
         {selectedTab === "Orders" && <Orders />}
       </div>

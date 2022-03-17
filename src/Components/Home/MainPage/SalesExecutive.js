@@ -74,6 +74,7 @@ const SalesExecutive = () => {
   };
 
   const handleEmptyInputs = () => {
+    setIsEdit(true);
     setFirstName("");
     setLastName("");
     setDob("");
@@ -102,11 +103,11 @@ const SalesExecutive = () => {
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
+        <div className="modal-dialog bg-warning">
+          <div className="modal-content bg-warning">
+            <div className="modal-header bg-warning">
               <h5
-                className="modal-title text-warning fs-2 mx-auto"
+                className="modal-title text-dark fs-2 mx-auto"
                 id="exampleModalLabel"
               >
                 Add Executives Details
@@ -120,14 +121,14 @@ const SalesExecutive = () => {
             </div>
             <div className="modal-body d-flex flex-wrap gap-3 justify-content-center align-items-center ">
               <input
-                className="activeInputs p-1 rounded border"
+                className="activeInputs p-1 rounded border-0 bg-dark text-warning"
                 type="text"
                 placeholder="First Name"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
               />
               <input
-                className="activeInputs p-1 rounded border"
+                className="activeInputs p-1 rounded border-0 bg-dark text-warning"
                 type="text"
                 placeholder="Last Name"
                 value={lastName}
@@ -136,7 +137,7 @@ const SalesExecutive = () => {
               <div>
                 <div>DOB</div>
                 <input
-                  className="activeInputs p-1 rounded border"
+                  className="activeInputs p-1 rounded border-0 bg-dark text-warning"
                   type="date"
                   value={dob}
                   onChange={(e) => setDob(e.target.value)}
@@ -145,7 +146,7 @@ const SalesExecutive = () => {
               <div>
                 <div>Gender(M/F/O)</div>
                 <input
-                  className="activeInputs p-1 rounded border "
+                  className="activeInputs p-1 rounded border-0 bg-dark text-warning "
                   type="text"
                   placeholder="Gender"
                   value={gender}
@@ -153,7 +154,7 @@ const SalesExecutive = () => {
                 />
               </div>
               <input
-                className="activeInputs p-1 rounded border"
+                className="activeInputs p-1 rounded border-0 bg-dark text-warning"
                 type="number"
                 placeholder="Experience"
                 value={experience}
@@ -162,7 +163,7 @@ const SalesExecutive = () => {
             </div>
             <div className="modal-footer d-flex justify-content-center">
               <button
-                className={`btn btn-warning shadow-none ${
+                className={`btn btn-dark text-warning shadow-none ${
                   isEdit ? "d-flex" : "d-none"
                 }`}
                 data-bs-dismiss="modal"
@@ -172,7 +173,7 @@ const SalesExecutive = () => {
                 ADD TO THE TEAM
               </button>
               <button
-                className={`btn btn-warning shadow-none ${
+                className={`btn btn-dark text-warning shadow-none ${
                   isEdit ? "d-none" : "d-flex"
                 }`}
                 data-bs-dismiss="modal"

@@ -11,7 +11,7 @@ function AdminHome() {
   return (
     <>
       <Sidebar selectedTab={selectedTab} isSelectedTag={isSelectedTag} />
-      <div className="border  w-75 mx-auto p-2 rounded ">
+      <div className="w-75 mx-auto p-2 rounded">
         {selectedTab === "Inventory" && <Inventory />}
         {selectedTab === "Sales Executive" && <SalesExecutive />}
         {selectedTab === "Create Order" && <CreateOrder />}

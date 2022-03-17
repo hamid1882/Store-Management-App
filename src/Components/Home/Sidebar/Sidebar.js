@@ -4,11 +4,11 @@ const Sidebar = ({ selectedTab, isSelectedTag, isSalesExec }) => {
   };
 
   return (
-    <div className="w-25 vh-100 p-2 bg-light">
+    <div className="w-25 vh-100 shadow border-end border-warning mx-2 p-2 bg-dark text-light">
       <div className="w-100">
         <button
-          className={`btn  my-2 w-100 shadow-none shadow d-flex align-items-center gap-3 ${
-            selectedTab === "Inventory" ? "btn-warning" : "none"
+          className={`btn text-light  my-2 w-100 shadow-none shadow d-flex align-items-center gap-3 ${
+            selectedTab === "Inventory" ? "btn-warning text-dark" : "none"
           } ${isSalesExec ? "d-none" : "d-flex"}`}
           onClick={currentTab}
         >
@@ -16,8 +16,8 @@ const Sidebar = ({ selectedTab, isSelectedTag, isSalesExec }) => {
           <div className="fs-4 fw-4">Inventory</div>
         </button>
         <button
-          className={`btn my-2 w-100 shadow-none shadow d-flex align-items-center gap-3  ${
-            selectedTab === "Sales Executive" ? "btn-warning" : "none"
+          className={`btn text-light my-2 w-100 shadow-none shadow d-flex align-items-center gap-3  ${
+            selectedTab === "Sales Executive" ? "btn-warning text-dark" : "none"
           } ${isSalesExec ? "d-none" : "d-flex"}`}
           onClick={currentTab}
         >
@@ -25,8 +25,8 @@ const Sidebar = ({ selectedTab, isSelectedTag, isSalesExec }) => {
           <div className="fs-4 fw-4">Sales Executive</div>
         </button>
         <button
-          className={`btn my-2 w-100 shadow-none shadow d-flex align-items-center gap-3  ${
-            selectedTab === "Create Order" ? "btn-warning" : "none"
+          className={`btn text-light my-2 w-100 shadow-none shadow d-flex align-items-center gap-3  ${
+            selectedTab === "Create Order" ? "btn-warning text-dark" : "none"
           }`}
           onClick={currentTab}
         >
@@ -34,8 +34,8 @@ const Sidebar = ({ selectedTab, isSelectedTag, isSalesExec }) => {
           <div className="fs-4 fw-4">Create Order</div>
         </button>
         <button
-          className={`btn my-2 w-100 shadow-none shadow d-flex align-items-center gap-3  ${
-            selectedTab === "Orders" ? "btn-warning" : "none"
+          className={`btn text-light my-2 w-100 shadow-none shadow d-flex align-items-center gap-3  ${
+            selectedTab === "Orders" ? "btn-warning text-dark" : "none"
           }`}
           onClick={currentTab}
         >

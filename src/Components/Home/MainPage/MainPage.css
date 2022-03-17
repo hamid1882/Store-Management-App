@@ -3,8 +3,17 @@ table {
   margin-top: 1.5em;
 }
 
-td,
+td {
+  font-size: 1.2em;
+  color: rgb(233, 206, 157);
+  border-bottom: 1px solid orange;
+  padding: 8px;
+}
+
 th {
+  color: rgb(233, 206, 157);
+  font-weight: 400;
+  font-size: 1.5em;
   border-bottom: 1px solid orange;
   padding: 8px;
 }

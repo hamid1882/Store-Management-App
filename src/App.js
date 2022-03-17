@@ -6,15 +6,11 @@ import "./App.css";
 import SalesExecHome from "./Components/Home/SalesExecHome";
 
 function App() {
-  const saveAdmin = localStorage.getItem("isAdminSaved");
-
   const [isAdmin, setIsAdmin] = useState(false);
   const [isSalesExec, setIsSalesExec] = useState(false);
 
-  localStorage.setItem("isAdminSaved", isAdmin);
-
   return (
-    <>
+    <div className="bg-dark ">
       <Navbar
         isAdmin={isAdmin}
         isSalesExec={isSalesExec}
@@ -35,7 +31,7 @@ function App() {
           <SalesExecHome isSalesExec={isSalesExec} />
         </div>
       )}
-    </>
+    </div>
   );
 }
 

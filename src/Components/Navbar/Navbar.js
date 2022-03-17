@@ -8,9 +8,11 @@ const Navbar = ({ isAdmin, isSalesExec, setIsAdmin, setIsSalesExec }) => {
     localStorage.removeItem("password");
   };
   return (
-    <nav className="navbar navbar-light bg-light">
+    <nav className="navbar navbar-light bg-dark text-light">
       <div className="container-fluid">
-        <h2 className="navbar-brand ">My Medical Store</h2>
+        <h2 className="navbar-brand t">
+          <i className="fa fa-plus-circle text-warning fs-1 shadow rounded-circle"></i>
+        </h2>
         <button
           className={`${
             isAdmin || isSalesExec ? "d-flex" : "d-none"

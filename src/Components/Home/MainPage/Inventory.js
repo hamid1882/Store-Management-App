@@ -15,9 +15,9 @@ const Inventory = () => {
 
   const [medicineName, setMedicineName] = useState("");
   const [manufacturer, setManufacturer] = useState("");
-  const [price, setPrice] = useState(0);
-  const [stock, setStock] = useState(0);
-  const [discount, setDiscount] = useState(0);
+  const [price, setPrice] = useState("");
+  const [stock, setStock] = useState("");
+  const [discount, setDiscount] = useState("");
   const [isAddNew, setIsAddNew] = useState(true);
 
   const dispatch = useDispatch();
@@ -79,11 +79,12 @@ const Inventory = () => {
   };
 
   const emptyTheInput = () => {
+    setIsAddNew(true);
     setMedicineName("");
     setManufacturer("");
-    setPrice(0);
-    setStock(0);
-    setDiscount(0);
+    setPrice("");
+    setStock("");
+    setDiscount("");
   };
 
   return (
@@ -103,15 +104,15 @@ const Inventory = () => {
       <div
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
-        className="modal fade"
+        className="modal fade bg-dark"
         id="exampleModal"
         tabIndex="-1"
       >
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
+        <div className="modal-dialog bg-warning">
+          <div className="modal-content bg-warning">
+            <div className="modal-header bg-warning">
               <h5
-                className="modal-title text-warning fs-2 mx-auto"
+                className="modal-title text-dark fs-2 mx-auto"
                 id="exampleModalLabel"
               >
                 Add Medicine Details
@@ -126,35 +127,35 @@ const Inventory = () => {
             <form onSubmit={handleAddNewItem}>
               <div className="modal-body d-flex flex-wrap gap-3 justify-content-center">
                 <input
-                  className="activeInputs p-1 rounded border"
+                  className="activeInputs p-1 rounded border-0 bg-dark text-warning"
                   type="text"
                   placeholder="Medicine Name"
                   value={medicineName}
                   onChange={(e) => setMedicineName(e.target.value)}
                 />
                 <input
-                  className="activeInputs p-1 rounded border"
+                  className="activeInputs p-1 rounded border-0 bg-dark text-warning"
                   type="text"
                   placeholder="Manufacturer"
                   value={manufacturer}
                   onChange={(e) => setManufacturer(e.target.value)}
                 />
                 <input
-                  className="activeInputs p-1 rounded border"
+                  className="activeInputs p-1 rounded border-0 bg-dark text-warning"
                   type="number"
                   placeholder="Price"
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
                 />
                 <input
-                  className="activeInputs p-1 rounded border"
+                  className="activeInputs p-1 rounded border-0 bg-dark text-warning"
                   type="number"
                   placeholder="Stock"
                   value={stock}
                   onChange={(e) => setStock(e.target.value)}
                 />
                 <input
-                  className="activeInputs p-1 rounded border"
+                  className="activeInputs p-1 rounded border-0 bg-dark text-warning"
                   type="text"
                   placeholder="Discount"
                   value={discount}
@@ -165,7 +166,7 @@ const Inventory = () => {
                 <button
                   className={`${
                     isAddNew ? "d-flex" : "d-none"
-                  } btn btn-warning shadow-none`}
+                  } btn btn-dark text-warning shadow-none`}
                   data-bs-dismiss="modal"
                   onClick={handleAddNewItem}
                   type="button"
