@@ -135,7 +135,7 @@ const CreateOrder = () => {
             type="text"
             placeholder="Medicine Name"
             className={`border-0 bg-warning p-1 activeInputs ${
-              JSON.parse(savedInventories)
+              allInventoriesData
                 .map((val) => val.medicineName)
                 .includes(medicine)
                 ? "text-dark"
@@ -150,8 +150,7 @@ const CreateOrder = () => {
             value={medicineQty}
             onChange={(e) => setMedicineQty(e.target.value)}
             className={`border-0 bg-warning p-1 activeInputs ${
-              JSON.parse(savedInventories).map((val) => val.stock) <=
-              medicineQty
+              allInventoriesData.map((val) => val.stock) <= medicineQty
                 ? "text-danger"
                 : "text-dark"
             }`}
