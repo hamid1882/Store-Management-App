@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updateStock } from "../../../Slices/InventorySlice";
+import {
+  selectAllInventories,
+  updateStock,
+} from "../../../Slices/InventorySlice";
 import {
   selectAllMedicinesValue,
   addMedicines,
@@ -20,6 +23,8 @@ const CreateOrder = () => {
   const selectAllMedicines = useSelector(selectAllMedicinesValue);
   const selectIds = useSelector(selectOrderId);
 
+  const allInventoriesData = useSelector(selectAllInventories);
+
   const savedInventories = localStorage.getItem("inventories");
 
   const filteredMedicines =
@@ -27,6 +32,9 @@ const CreateOrder = () => {
     JSON.parse(savedInventories).find(
       (value) => value.medicineName === medicine
     );
+
+  console.log(filteredMedicines);
+  console.log(JSON.parse(savedInventories));
 
   const createMedicineSchema = {
     medicine,
@@ -157,15 +165,15 @@ const CreateOrder = () => {
         </div>
         <details className="text-warning my-2 p-2">
           <summary>Available Medicines</summary>
-          {JSON.parse(savedInventories) &&
-            JSON.parse(savedInventories).map((val) => (
+          {allInventoriesData &&
+            allInventoriesData.map((val) => (
               <>
                 <div className="mx-3">
                   {val.medicineName} <span>({val.stock})</span>
                 </div>
               </>
             ))}
-          {JSON.parse(savedInventories).length === 0 && (
+          {allInventoriesData.length === 0 && (
             <div className="text-secondary mx-2">No Medicines Available</div>
           )}
         </details>
