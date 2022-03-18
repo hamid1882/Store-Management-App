@@ -1,3 +1,57 @@
+● For Admin Access
+○ Username: test-admin
+○ Password: test-admin
+● For Sales Executive Access
+○ Username: test-sales
+○ Password: test-sales
+
+
+Problem Details
+You have to design an app to manage a pharmacy. There are two types of users:
+● Store Manager
+● Sales Executive
+A Store Manager has full access to the system. He/she can
+● Manage Inventory
+○ CRUD for medicines
+○ A medicine will have the following information: Name, Manufacturer
+Name, Price, Stock, Discount
+○ Manage Team
+○ CRUD for Sales Executive
+○ A sales executive will have the following information: First Name,
+Last Name, Date of birth, Gender, Experience Years
+● Manage Orders
+○ CRUD Orders
+○ An order will have the following information: OrderId, Customer
+Name, Customer Contact Number, Products, Purchase quantity of
+each product, Total Amount
+A Sales Executive can:
+● Create orders
+● View orders created by them.
+On login show following options to Store Manager:
+● Add Medicine to Inventory
+● View Inventory:
+○ Show list of all the medicines in the store
+○ An option to edit the medicine
+○ An option to delete the medicine
+● Add Sales Executive
+● View Team:
+○ Show list of all the sales executive
+○ An option to edit the details
+○ An option to delete the medicine
+On login show following options to the Sales Executive:
+● Create Order
+○ Enter Customer Name, Contact Number, and Select products with
+quantity.
+● View Orders
+Please add two credential as follows for testing purpose:
+● For Admin Access
+○ Username: test-admin
+○ Password: test-admin
+● For Sales Executive Access
+○ Username: test-sales
+○ Password: test-sales
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
