@@ -92,7 +92,9 @@ const SalesExecutive = () => {
 
   return (
     <div>
-      <h1 className="text-center text-warning my-2 pb-2">SALES EXECUTIVE</h1>
+      <h1 className="text-center text-warning my-3 pb-2 font-stylish">
+        Sales Executive
+      </h1>
       <div className="my-3">
         <button
           className="btn btn-warning d-flex align-items-center gap-2 shadow-none"
@@ -194,7 +196,7 @@ const SalesExecutive = () => {
           </div>
         </div>
       </div>
-      <table>
+      <table className="bg-lightOrange rounded">
         <thead>
           <tr>
             <th>First Name</th>
@@ -217,7 +219,7 @@ const SalesExecutive = () => {
                 <td>{players.experience}</td>
                 <td>
                   <button
-                    className={`btn btn-hover rounded-circle shadow-none `}
+                    className={`btn btn-hover rounded-circle shadow-none text-lightOrange`}
                     data-bs-toggle="modal"
                     data-bs-target="#exampleModal"
                     onClick={() => updateSalesExec(idx)}
@@ -227,7 +229,7 @@ const SalesExecutive = () => {
                 </td>
                 <td>
                   <button
-                    className={`btn btn-hover rounded-circle shadow-none `}
+                    className={`btn btn-hover rounded-circle shadow-none text-lightOrange `}
                     onClick={() => deleteSalesExecFn(players.id)}
                   >
                     <i className="fa fa-trash"></i>

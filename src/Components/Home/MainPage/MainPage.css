@@ -1,6 +1,7 @@
 table {
   width: 100%;
   margin-top: 1.5em;
+  font-family: "EB Garamond", serif;
 }
 
 td {
@@ -8,6 +9,7 @@ td {
   color: rgb(233, 206, 157);
   border-bottom: 1px solid orange;
   padding: 8px;
+  font-family: "EB Garamond", serif;
 }
 
 th {

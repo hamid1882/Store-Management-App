@@ -40,12 +40,13 @@ const Inventory = () => {
     setDiscount(0);
   };
 
+  let discountedPrice = price - (discount / 100) * price;
   const inventorySchema = {
     discount,
     id: allIds,
     medicineName,
     manufacturer,
-    price,
+    price: Math.round(discountedPrice),
     stock,
   };
 
@@ -74,7 +75,7 @@ const Inventory = () => {
           id: currentMedicine,
           medicineName,
           manufacturer,
-          price,
+          price: Math.round(discountedPrice),
           stock,
           discount,
         },
@@ -93,7 +94,7 @@ const Inventory = () => {
 
   return (
     <div>
-      <h1 className="text-center text-warning my-2">Inventory</h1>
+      <h1 className="text-center text-warning my-2 font-stylish">Inventory</h1>
       <div className="my-3">
         <button
           className="btn btn-warning d-flex align-items-center gap-2 shadow-none"
@@ -192,7 +193,7 @@ const Inventory = () => {
           </div>
         </div>
       </div>
-      <table>
+      <table className="bg-lightOrange rounded">
         <thead>
           <tr>
             <th>Medicine Name</th>

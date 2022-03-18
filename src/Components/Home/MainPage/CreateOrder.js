@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  selectAllInventories,
-  updateStock,
-} from "../../../Slices/InventorySlice";
+import { updateStock } from "../../../Slices/InventorySlice";
 import {
   selectAllMedicinesValue,
   addMedicines,
@@ -20,7 +17,6 @@ const CreateOrder = () => {
 
   const dispatch = useDispatch();
 
-  // const selectAllInventoriesData = useSelector(selectAllInventories);
   const selectAllMedicines = useSelector(selectAllMedicinesValue);
   const selectIds = useSelector(selectOrderId);
 
@@ -97,7 +93,9 @@ const CreateOrder = () => {
 
   return (
     <div className="container mx-auto">
-      <h1 className="text-center text-warning my-2 pb-2">Create Order</h1>
+      <h1 className="text-center text-warning my-3 pb-2 font-stylish">
+        Create Order
+      </h1>
 
       <div className="mx-auto d-flex my-3 gap-2 text-warning">
         <div>
@@ -172,7 +170,7 @@ const CreateOrder = () => {
           )}
         </details>
       </div>
-      <table>
+      <table className="bg-lightOrange rounded">
         <thead>
           <tr>
             <th>Medicine Name</th>
@@ -187,10 +185,10 @@ const CreateOrder = () => {
                 <td>{meds.medicine}</td>
                 <td>{meds.medicineQty}</td>
                 <td>
-                  {meds.price.length > 0 ? (
+                  {meds.price ? (
                     meds.price
                   ) : (
-                    <span className="text-danger">No Stock</span>
+                    <span className="text-danger">0</span>
                   )}
                 </td>
               </tr>

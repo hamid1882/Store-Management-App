@@ -30,7 +30,9 @@ const Orders = () => {
 
   return (
     <div>
-      <h1 className="text-center text-warning my-2 pb-2">Orders History</h1>
+      <h1 className="text-center text-warning my-3 pb-2 font-stylish">
+        Orders History
+      </h1>
       {JSON.parse(savedOrders).length > 0 &&
         JSON.parse(savedOrders).map((val, idx) => (
           <div

@@ -22,3 +22,14 @@ body {
 .font-stylish {
   font-family: "Pacifico", cursive;
 }
+
+::-moz-selection {
+  /* Code for Firefox */
+  color: rgb(121, 94, 22);
+  background: rgb(233, 206, 157);
+}
+
+::selection {
+  color: rgb(121, 94, 22);
+  background: rgb(233, 206, 157);
+}
