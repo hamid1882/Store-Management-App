@@ -6,7 +6,10 @@ import SalesExecHome from "./Components/Home/SalesExecHome";
 import "./App.css";
 
 function App() {
-  const [checkAdmin, setCheckAdmin] = useState("");
+  const savedAdmin = localStorage.getItem("admin");
+  const savedLogIn = localStorage.getItem("loggedIn");
+
+  const [checkAdmin, setCheckAdmin] = useState(savedAdmin);
   const [isLogin, setIsLogin] = useState(false);
 
   const handleLogin = () => {
@@ -18,8 +21,11 @@ function App() {
       setIsLogin(false);
     }
   };
-  const savedAdmin = localStorage.getItem("admin");
-  const savedLogIn = localStorage.getItem("loggedIn");
+
+  console.log(savedLogIn);
+
+  console.log(checkAdmin);
+  console.log(isLogin);
 
   useEffect(() => {
     handleLogin();

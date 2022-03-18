@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   selectAllInventories,
@@ -20,18 +20,22 @@ const CreateOrder = () => {
 
   const dispatch = useDispatch();
 
-  const selectAllInventoriesData = useSelector(selectAllInventories);
+  // const selectAllInventoriesData = useSelector(selectAllInventories);
   const selectAllMedicines = useSelector(selectAllMedicinesValue);
   const selectIds = useSelector(selectOrderId);
 
+  const savedInventories = localStorage.getItem("inventories");
+
   const filteredMedicines =
-    selectAllInventoriesData &&
-    selectAllInventoriesData.filter((value) => value.medicineName === medicine);
+    JSON.parse(savedInventories) &&
+    JSON.parse(savedInventories).find(
+      (value) => value.medicineName === medicine
+    );
 
   const createMedicineSchema = {
     medicine,
     medicineQty,
-    price: filteredMedicines.length > 0 && filteredMedicines[0].price,
+    price: filteredMedicines && filteredMedicines.price,
   };
 
   const allOrdersSchema = {
@@ -60,19 +64,14 @@ const CreateOrder = () => {
   const handleUpdataStock = () => {
     dispatch(
       updateStock({
-        id: filteredMedicines.length > 0 && filteredMedicines[0].id,
-        sold: sumAllTheQty(
-          selectAllMedicines.map((val) => Number(val.medicineQty))
-        ),
+        id: filteredMedicines && filteredMedicines.id,
+        sold: medicineQty,
       })
     );
   };
 
   const handleAddMedicines = () => {
-    if (
-      filteredMedicines.length > 0 &&
-      medicineQty <= Number(filteredMedicines[0].stock)
-    ) {
+    if (filteredMedicines && medicineQty <= Number(filteredMedicines.stock)) {
       handleUpdataStock();
       dispatch(addMedicines(createMedicineSchema));
     } else {
@@ -80,20 +79,12 @@ const CreateOrder = () => {
       setMedicineQty(0);
       throw alert(
         `There is no stock available for ${medicine} inStock: ${Number(
-          filteredMedicines[0].stock
+          filteredMedicines.stock
         )}`
       );
     }
     setMedicine("");
     setMedicineQty(0);
-  };
-
-  const sumAllTheQty = (qty) => {
-    let addQty = 0;
-    for (let i = 0; i < qty.length; i++) {
-      addQty += qty[i];
-    }
-    return addQty;
   };
 
   const handleCreateOrder = () => {
@@ -132,11 +123,18 @@ const CreateOrder = () => {
       </div>
       <div>
         <h5 className="text-warning">Select Medicine</h5>
+
         <div className="d-flex gap-2">
           <input
             type="text"
             placeholder="Medicine Name"
-            className="border-0 bg-warning p-1 activeInputs "
+            className={`border-0 bg-warning p-1 activeInputs ${
+              JSON.parse(savedInventories)
+                .map((val) => val.medicineName)
+                .includes(medicine)
+                ? "text-dark"
+                : "text-danger"
+            }`}
             value={medicine}
             onChange={(e) => setMedicine(e.target.value)}
           />
@@ -145,7 +143,12 @@ const CreateOrder = () => {
             placeholder="Quantity"
             value={medicineQty}
             onChange={(e) => setMedicineQty(e.target.value)}
-            className="border-0 bg-warning p-1 activeInputs"
+            className={`border-0 bg-warning p-1 activeInputs ${
+              JSON.parse(savedInventories).map((val) => val.stock) <=
+              medicineQty
+                ? "text-danger"
+                : "text-dark"
+            }`}
           />
           <button
             className="btn btn-warning rounded-circle shadow-none"
@@ -154,6 +157,20 @@ const CreateOrder = () => {
             <i className="fa fa-plus"></i>
           </button>
         </div>
+        <details className="text-warning my-2 p-2">
+          <summary>Available Medicines</summary>
+          {JSON.parse(savedInventories) &&
+            JSON.parse(savedInventories).map((val) => (
+              <>
+                <div className="mx-3">
+                  {val.medicineName} <span>({val.stock})</span>
+                </div>
+              </>
+            ))}
+          {JSON.parse(savedInventories).length === 0 && (
+            <div className="text-secondary mx-2">No Medicines Available</div>
+          )}
+        </details>
       </div>
       <table>
         <thead>
