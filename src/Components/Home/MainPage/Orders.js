@@ -6,6 +6,10 @@ const Orders = () => {
   const selectAllOrdersVal = useSelector(selectAllOrders);
   const dispatch = useDispatch();
 
+  localStorage.setItem("orders", JSON.stringify(selectAllOrdersVal));
+
+  const savedOrders = localStorage.getItem("orders");
+
   const deleteSelectedOrder = (e) => {
     dispatch(deleteOrder(e));
   };
@@ -27,8 +31,8 @@ const Orders = () => {
   return (
     <div>
       <h1 className="text-center text-warning my-2 pb-2">Orders History</h1>
-      {selectAllOrdersVal.length > 0 &&
-        selectAllOrdersVal.map((val, idx) => (
+      {JSON.parse(savedOrders).length > 0 &&
+        JSON.parse(savedOrders).map((val, idx) => (
           <div
             key={idx}
             className="mx-5 my-4 bg-lightOrange text-warning p-5 rounded "

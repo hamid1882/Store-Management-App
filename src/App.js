@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "./Components/Navbar/Navbar";
 import Login from "./Components/Auth/Login";
 import AdminHome from "./Components/Home/AdminHome";
@@ -6,60 +6,44 @@ import SalesExecHome from "./Components/Home/SalesExecHome";
 import "./App.css";
 
 function App() {
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [isSalesExec, setIsSalesExec] = useState(false);
   const [checkAdmin, setCheckAdmin] = useState("");
+  const [isLogin, setIsLogin] = useState(false);
 
-  console.log(checkAdmin);
+  const handleLogin = () => {
+    if (checkAdmin === "test-admin" || checkAdmin === "test-sales") {
+      localStorage.setItem("admin", checkAdmin);
+      localStorage.setItem("loggedIn", isLogin);
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+    }
+  };
+  const savedAdmin = localStorage.getItem("admin");
+  const savedLogIn = localStorage.getItem("loggedIn");
+
+  useEffect(() => {
+    handleLogin();
+    // eslint-disable-next-line
+  }, [isLogin, checkAdmin, savedLogIn, savedAdmin]);
 
   return (
     <div className="bg-darkOrange ">
       <Navbar
-        isAdmin={isAdmin}
-        isSalesExec={isSalesExec}
-        setIsAdmin={setIsAdmin}
-        setIsSalesExec={setIsSalesExec}
+        setIsLogin={setIsLogin}
         setCheckAdmin={setCheckAdmin}
+        savedLogin={savedLogIn}
       />
-      {/* {isAdmin ||
-        (isSalesExec === false && (
-          <Login
-            setCheckAdmin={setCheckAdmin}
-            setIsAdmin={setIsAdmin}
-            setIsSalesExec={setIsSalesExec}
-          />
-        ))}
-      {isAdmin && (
+      {savedLogIn === null && <Login setCheckAdmin={setCheckAdmin} />}
+
+      {savedAdmin === "test-admin" && (
         <div className="d-flex">
           <AdminHome />
         </div>
       )}
-      {isSalesExec && (
+      {savedAdmin === "test-sales" && (
         <div className="d-flex">
-          <SalesExecHome isSalesExec={isSalesExec} />
+          <SalesExecHome checkAdmin={checkAdmin} />
         </div>
-      )} */}
-      {checkAdmin === "test-admin" ? (
-        <div className="d-flex">
-          <AdminHome />
-        </div>
-      ) : (
-        <Login
-          setCheckAdmin={setCheckAdmin}
-          setIsAdmin={setIsAdmin}
-          setIsSalesExec={setIsSalesExec}
-        />
-      )}
-      {checkAdmin === "test-sales" ? (
-        <div className="d-flex">
-          <SalesExecHome isSalesExec={isSalesExec} />
-        </div>
-      ) : (
-        <Login
-          setCheckAdmin={setCheckAdmin}
-          setIsAdmin={setIsAdmin}
-          setIsSalesExec={setIsSalesExec}
-        />
       )}
     </div>
   );

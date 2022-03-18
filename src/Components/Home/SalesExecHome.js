@@ -3,7 +3,7 @@ import CreateOrder from "./MainPage/CreateOrder";
 import Orders from "./MainPage/Orders";
 import Sidebar from "./Sidebar/Sidebar";
 
-function SalesExecHome({ isSalesExec }) {
+function SalesExecHome({ checkAdmin }) {
   const [selectedTab, isSelectedTag] = useState("Create Order");
 
   return (
@@ -11,7 +11,7 @@ function SalesExecHome({ isSalesExec }) {
       <Sidebar
         selectedTab={selectedTab}
         isSelectedTag={isSelectedTag}
-        isSalesExec={isSalesExec}
+        checkAdmin={checkAdmin}
       />
       <div className="w-75 mx-auto p-2 rounded ">
         {selectedTab === "Create Order" && <CreateOrder />}

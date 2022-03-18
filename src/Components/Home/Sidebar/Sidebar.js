@@ -1,4 +1,4 @@
-const Sidebar = ({ selectedTab, isSelectedTag, isSalesExec }) => {
+const Sidebar = ({ selectedTab, isSelectedTag, checkAdmin }) => {
   const currentTab = (e) => {
     isSelectedTag(e.target.innerText);
   };
@@ -9,7 +9,7 @@ const Sidebar = ({ selectedTab, isSelectedTag, isSalesExec }) => {
         <button
           className={`btn text-light  my-2 w-100 shadow-none shadow d-flex align-items-center gap-3 ${
             selectedTab === "Inventory" ? "btn-warning text-dark" : "none"
-          } ${isSalesExec ? "d-none" : "d-flex"}`}
+          } ${checkAdmin === "test-sales" ? "d-none" : "d-flex"}`}
           onClick={currentTab}
         >
           <i className="fa fa-briefcase"></i>
@@ -18,7 +18,7 @@ const Sidebar = ({ selectedTab, isSelectedTag, isSalesExec }) => {
         <button
           className={`btn text-light my-2 w-100 shadow-none shadow d-flex align-items-center gap-3  ${
             selectedTab === "Sales Executive" ? "btn-warning text-dark" : "none"
-          } ${isSalesExec ? "d-none" : "d-flex"}`}
+          } ${checkAdmin === "test-sales" ? "d-none" : "d-flex"}`}
           onClick={currentTab}
         >
           <i className="fa fa-users"></i>

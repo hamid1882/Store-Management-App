@@ -19,6 +19,12 @@ const SalesExecutive = () => {
   const [experience, setExperience] = useState("");
   const [isEdit, setIsEdit] = useState(false);
 
+  console.log(allSalesExecs);
+
+  localStorage.setItem("allSales", JSON.stringify(allSalesExecs));
+
+  const savedSalesExecs = localStorage.getItem("allSales");
+
   const salesExecSchema = {
     id: selectIdsValue,
     firstName: firstName,
@@ -50,7 +56,9 @@ const SalesExecutive = () => {
   const updateSalesExec = (e) => {
     setIsEdit(false);
     setCurrentItem(e);
-    const currentData = allSalesExecs.find((value, id) => id === e);
+    const currentData = JSON.parse(savedSalesExecs).find(
+      (value, id) => id === e
+    );
     setFirstName(currentData && currentData.firstName);
     setLastName(currentData && currentData.lastName);
     setDob(currentData && currentData.dob);
@@ -198,8 +206,8 @@ const SalesExecutive = () => {
             <th> </th>
           </tr>
         </thead>
-        {allSalesExecs &&
-          allSalesExecs.map((players, idx) => (
+        {JSON.parse(savedSalesExecs) &&
+          JSON.parse(savedSalesExecs).map((players, idx) => (
             <tbody key={players.id}>
               <tr>
                 <td>{players.firstName}</td>

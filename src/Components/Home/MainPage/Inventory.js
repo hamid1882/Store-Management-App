@@ -13,6 +13,10 @@ const Inventory = () => {
   const allInventories = useSelector(selectAllInventories);
   const allIds = useSelector(selectId);
 
+  localStorage.setItem("inventories", JSON.stringify(allInventories));
+
+  const savedInventories = localStorage.getItem("inventories");
+
   const [medicineName, setMedicineName] = useState("");
   const [manufacturer, setManufacturer] = useState("");
   const [price, setPrice] = useState("");
@@ -200,8 +204,8 @@ const Inventory = () => {
             <th> </th>
           </tr>
         </thead>
-        {allInventories &&
-          allInventories.map((items, idx) => (
+        {JSON.parse(savedInventories) &&
+          JSON.parse(savedInventories).map((items, idx) => (
             <tbody key={items.id}>
               <tr>
                 <td>{items.medicineName}</td>

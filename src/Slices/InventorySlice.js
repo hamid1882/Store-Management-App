@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const savedInventory = localStorage.getItem("inventories");
+
 let id = 1;
 
 export const initialState = {
-  allInventories: [],
+  allInventories: savedInventory === null ? [] : JSON.parse(savedInventory),
   id,
 };
 

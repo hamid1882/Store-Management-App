@@ -2,8 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 let id = 1;
 
+const savedSalesExec = localStorage.getItem("allSales");
+
 export const initialState = {
-  allSalesExecs: [],
+  allSalesExecs: savedSalesExec === null ? [] : JSON.parse(savedSalesExec),
   id,
 };
 

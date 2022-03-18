@@ -43,8 +43,6 @@ const CreateOrder = () => {
     total: selectAllMedicines.map((val) => val.price),
   };
 
-  console.log(allOrdersSchema);
-
   const sumUpTotal = (price, qty) => {
     let addUp = [];
     for (let i = 0; i < price.length; i++) {

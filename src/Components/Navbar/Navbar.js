@@ -1,19 +1,19 @@
 import React from "react";
 
-const Navbar = ({
-  setCheckAdmin,
-  isAdmin,
-  isSalesExec,
-  setIsAdmin,
-  setIsSalesExec,
-}) => {
+const Navbar = ({ setCheckAdmin, setIsLogin }) => {
+  const savedLogIn = localStorage.getItem("loggedIn");
+
   const handleLogout = () => {
     setCheckAdmin("");
-    setIsAdmin(false);
-    setIsSalesExec(false);
-    localStorage.removeItem("userName");
-    localStorage.removeItem("password");
+    setIsLogin(false);
+    localStorage.removeItem("admin");
+    localStorage.removeItem("loggedIn");
+
+    if (savedLogIn === null) {
+      setIsLogin(false);
+    }
   };
+
   return (
     <nav className="navbar navbar-light bg-darkOrange text-light shadow">
       <div className="container-fluid">
@@ -22,8 +22,8 @@ const Navbar = ({
         </h2>
         <button
           className={`${
-            isAdmin || isSalesExec ? "d-flex" : "d-none"
-          } btn btn-warning`}
+            savedLogIn !== null ? "d-flex" : "d-none"
+          } btn btn-warning shadow-none`}
           onClick={handleLogout}
         >
           Logout
