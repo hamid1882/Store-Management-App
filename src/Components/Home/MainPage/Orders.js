@@ -8,7 +8,16 @@ const Orders = () => {
 
   localStorage.setItem("orders", JSON.stringify(selectAllOrdersVal));
 
+  const getMeAdmin = localStorage.getItem("admin");
+
   const savedOrders = localStorage.getItem("orders");
+
+  const salesOrders = JSON.parse(savedOrders).filter(
+    (val) => val.admin === "test-sales"
+  );
+
+  const checkSalesOrders =
+    getMeAdmin === "test-admin" ? JSON.parse(savedOrders) : salesOrders;
 
   const deleteSelectedOrder = (e) => {
     dispatch(deleteOrder(e));
@@ -33,11 +42,11 @@ const Orders = () => {
       <h1 className="text-center text-warning my-3 pb-2 font-stylish">
         Orders History
       </h1>
-      {JSON.parse(savedOrders).length > 0 &&
-        JSON.parse(savedOrders).map((val, idx) => (
+      {checkSalesOrders.length > 0 &&
+        checkSalesOrders.map((val, idx) => (
           <div
             key={idx}
-            className="mx-5 my-4 bg-lightOrange text-warning p-5 rounded "
+            className="mx-5 my-4 bg-lightOrange text-warning px-5 py-2 rounded "
           >
             <div className="d-flex gap-3 justify-content-between align-items-center my-4 ">
               <h5>
@@ -87,6 +96,9 @@ const Orders = () => {
                 </th>
               </tr>
             </table>
+            <h5 className="text-end mt-4 font-fantasy ">
+              Created by: {val.admin}
+            </h5>
           </div>
         ))}
     </div>

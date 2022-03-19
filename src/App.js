@@ -22,11 +22,6 @@ function App() {
     }
   };
 
-  console.log(savedLogIn);
-
-  console.log(checkAdmin);
-  console.log(isLogin);
-
   useEffect(() => {
     handleLogin();
     // eslint-disable-next-line

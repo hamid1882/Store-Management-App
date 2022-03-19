@@ -21,6 +21,7 @@ const CreateOrder = () => {
   const dispatch = useDispatch();
 
   const selectAllMedicines = useSelector(selectAllMedicinesValue);
+
   const selectIds = useSelector(selectOrderId);
 
   const allInventoriesData = useSelector(selectAllInventories);
@@ -33,14 +34,13 @@ const CreateOrder = () => {
       (value) => value.medicineName === medicine
     );
 
-  console.log(filteredMedicines);
-  console.log(JSON.parse(savedInventories));
-
   const createMedicineSchema = {
     medicine,
     medicineQty,
     price: filteredMedicines && filteredMedicines.price,
   };
+
+  const savedAdmin = localStorage.getItem("admin");
 
   const allOrdersSchema = {
     id: selectIds,
@@ -49,6 +49,7 @@ const CreateOrder = () => {
     orderId: Number(customerNumber.toString().slice(0, 6)),
     medicineData: selectAllMedicines,
     total: selectAllMedicines.map((val) => val.price),
+    admin: savedAdmin,
   };
 
   const sumUpTotal = (price, qty) => {
@@ -166,11 +167,9 @@ const CreateOrder = () => {
           <summary>Available Medicines</summary>
           {allInventoriesData &&
             allInventoriesData.map((val) => (
-              <>
-                <div className="mx-3">
-                  {val.medicineName} <span>({val.stock})</span>
-                </div>
-              </>
+              <div className="mx-3" key={val.i}>
+                {val.medicineName} <span>({val.stock})</span>
+              </div>
             ))}
           {allInventoriesData.length === 0 && (
             <div className="text-secondary mx-2">No Medicines Available</div>
@@ -187,7 +186,7 @@ const CreateOrder = () => {
         </thead>
         {selectAllMedicines &&
           selectAllMedicines.map((meds) => (
-            <tbody>
+            <tbody key={meds.id}>
               <tr>
                 <td>{meds.medicine}</td>
                 <td>{meds.medicineQty}</td>

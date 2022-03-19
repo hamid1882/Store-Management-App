@@ -23,6 +23,10 @@ body {
   font-family: "Pacifico", cursive;
 }
 
+.font-fantasy {
+  font-family: "EB Garamond", serif;
+}
+
 ::-moz-selection {
   /* Code for Firefox */
   color: rgb(121, 94, 22);
