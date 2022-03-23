@@ -1,6 +1,7 @@
 table {
   width: 100%;
   margin-top: 1.5em;
+  padding: 1em;
   font-family: "EB Garamond", serif;
 }
 
@@ -23,4 +24,9 @@ th {
 .btn-hover:hover {
   background-color: rgb(141, 111, 28);
   color: rgb(233, 206, 157);
+}
+
+.select-options:focus {
+  border: none;
+  outline: none;
 }

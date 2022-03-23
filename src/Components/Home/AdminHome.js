@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import Sidebar from "./Sidebar/Sidebar";
 import Inventory from "./MainPage/Inventory";
+import SalesExecutive from "./MainPage/SalesExecutive";
 import CreateOrder from "./MainPage/CreateOrder";
 import Orders from "./MainPage/Orders";
-import SalesExecutive from "./MainPage/SalesExecutive";
-import Sidebar from "./Sidebar/Sidebar";
 
 function AdminHome() {
   const [selectedTab, isSelectedTag] = useState("Inventory");

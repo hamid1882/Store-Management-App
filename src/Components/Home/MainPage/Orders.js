@@ -38,8 +38,8 @@ const Orders = () => {
   };
 
   return (
-    <div>
-      <h1 className="text-center text-warning my-3 pb-2 font-stylish">
+    <div className="custom-heigth-max overflow-custom">
+      <h1 className="text-center text-warning my-3 pb-2 font-stylish ">
         Orders History
       </h1>
       {checkSalesOrders.length > 0 &&

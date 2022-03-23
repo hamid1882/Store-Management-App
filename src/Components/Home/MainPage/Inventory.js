@@ -31,7 +31,7 @@ const Inventory = () => {
     if (medicineName !== "" && price !== "" && price !== 0) {
       dispatch(addNewItem(inventorySchema));
     } else {
-      throw alert("Medicine Name and Price is Mandotary");
+      throw alert("Medicine Name, Stock and Price is Mandotary");
     }
     setMedicineName("");
     setManufacturer("");
@@ -193,53 +193,55 @@ const Inventory = () => {
           </div>
         </div>
       </div>
-      <table className="bg-lightOrange rounded">
-        <thead>
-          <tr>
-            <th>Medicine Name</th>
-            <th>Manufacturer</th>
-            <th>Price</th>
-            <th>Stock</th>
-            <th>Discount(%)</th>
-            <th> </th>
-            <th> </th>
-          </tr>
-        </thead>
-        {JSON.parse(savedInventories) &&
-          JSON.parse(savedInventories).map((items, idx) => (
-            <tbody key={items.id}>
-              <tr>
-                <td>{items.medicineName}</td>
-                <td>{items.manufacturer}</td>
-                <td>₹{items.price}</td>
-                <td>{items.stock}</td>
-                <td>{items.discount}%</td>
-                <td>
-                  <button
-                    className="btn text-lightOrange btn-hover rounded-circle shadow-none"
-                    onClick={() => currentItem(idx)}
-                    data-bs-toggle="modal"
-                    data-bs-target="#exampleModal"
-                  >
-                    <i className="fa fa-pen"></i>
-                  </button>
-                </td>
-                <td key={items.id}>
-                  <div>
+      <div className="bg-lightOrange rounded px-3">
+        <table>
+          <thead>
+            <tr>
+              <th>Medicine Name</th>
+              <th>Manufacturer</th>
+              <th>Price</th>
+              <th>Stock</th>
+              <th>Discount(%)</th>
+              <th> </th>
+              <th> </th>
+            </tr>
+          </thead>
+          {JSON.parse(savedInventories) &&
+            JSON.parse(savedInventories).map((items, idx) => (
+              <tbody key={items.id}>
+                <tr>
+                  <td>{items.medicineName}</td>
+                  <td>{items.manufacturer}</td>
+                  <td>₹{items.price}</td>
+                  <td>{items.stock}</td>
+                  <td>{items.discount}%</td>
+                  <td>
                     <button
                       className="btn text-lightOrange btn-hover rounded-circle shadow-none"
-                      id={items.id}
-                      onClick={() => deleteCurrentItem(items.id)}
-                      title={items.name}
+                      onClick={() => currentItem(idx)}
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
                     >
-                      <i className="fa fa-trash"></i>
+                      <i className="fa fa-pen"></i>
                     </button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          ))}
-      </table>
+                  </td>
+                  <td key={items.id}>
+                    <div>
+                      <button
+                        className="btn text-lightOrange btn-hover rounded-circle shadow-none"
+                        id={items.id}
+                        onClick={() => deleteCurrentItem(items.id)}
+                        title={items.name}
+                      >
+                        <i className="fa fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            ))}
+        </table>
+      </div>
     </div>
   );
 };

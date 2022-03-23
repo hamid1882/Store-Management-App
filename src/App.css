@@ -2,6 +2,23 @@ body {
   background-color: rgb(240, 243, 245);
 }
 
+.custom-height {
+  height: calc(100vh - 4.6em);
+}
+
+.custom-heigth-max {
+  height: calc(100vh - 6.6em);
+}
+
+.overflow-custom {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.overflow-custom::-webkit-scrollbar {
+  display: none;
+}
+
 .activeInputs:focus {
   outline: none;
   border: none;

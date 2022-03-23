@@ -15,7 +15,7 @@ const Navbar = ({ setCheckAdmin, setIsLogin }) => {
   };
 
   return (
-    <nav className="navbar navbar-light bg-darkOrange text-light shadow">
+    <nav className="navbar navbar-light  bg-darkOrange text-light shadow ">
       <div className="container-fluid">
         <h2 className="navbar-brand t">
           <i className="fa fa-plus-circle text-warning fs-1 shadow rounded-circle"></i>

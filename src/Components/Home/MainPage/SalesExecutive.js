@@ -19,8 +19,6 @@ const SalesExecutive = () => {
   const [experience, setExperience] = useState("");
   const [isEdit, setIsEdit] = useState(false);
 
-  console.log(allSalesExecs);
-
   localStorage.setItem("allSales", JSON.stringify(allSalesExecs));
 
   const savedSalesExecs = localStorage.getItem("allSales");

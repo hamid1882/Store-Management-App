@@ -19,6 +19,8 @@ function App() {
       setIsLogin(true);
     } else {
       setIsLogin(false);
+      setCheckAdmin("");
+      setIsLogin("");
     }
   };
 
